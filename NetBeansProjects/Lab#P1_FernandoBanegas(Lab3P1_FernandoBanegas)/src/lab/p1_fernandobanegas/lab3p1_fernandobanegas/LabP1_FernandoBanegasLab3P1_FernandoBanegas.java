@@ -69,12 +69,38 @@ public class LabP1_FernandoBanegasLab3P1_FernandoBanegas {
                     }
                     break;
                 case 3:
-                    
+                   System.out.print("Ingrese el tamano de tu trapecio: ");
+                    int t = entrada.nextInt();
+
+                    if (t < 5) {
+                        System.out.println("El numero debe de ser mayor a 5:");
+                    } else {
+                        int B1 = 6;
+                        int B2 = B1 + (t - 1) * 2;
+
+                        for (int i = 0; i < t; i++) {
+                            int as = B1 + i * 2;
+
+                            for (int j = 0; j < t - i - 1; j++) {
+                                System.out.print(" ");
+                            }
+
+                            for (int j = 0; j < as; j++) {
+                                if (j == 0 || j == as - 1 || i == 0 || i == t - 1) {
+                                    System.out.print("*");
+                                } else {
+                                    System.out.print(" ");
+                                }
+                            }System.out.println();
+                        }
+                        
+                            
+                    }   
                     break;
                 default:
                     System.out.println("Gracias por usar el programa");
                     resp = 4;
-                    
+                        
             }
             
         }
