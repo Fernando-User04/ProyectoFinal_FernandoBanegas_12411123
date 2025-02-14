@@ -29,6 +29,10 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
             resp = entrada.nextInt();
             switch (resp){
                 case 1:
+                    System.out.println("Ingrese la palabra magica : ");
+                    String cadena = entrada.next();
+                    compra(cadena);
+                    
                     break;
                 case 2:
                     break;
@@ -69,6 +73,55 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
         }
         
     
+        
+    }
+    
+    public static void compra(String a){
+        int papa = 0;
+        int maiz = 0;
+        int trigo = 0;
+        int cafe = 0;
+        int otros = 0;
+        int can = 0;
+    for (int cont=0;cont<a.length();cont++){
+        char i = a.charAt(cont);
+        if ((i>='a' && i !='a')&&(i<='z' && i !='z')){
+        System.out.println("No es una letra");
+        }
+        else if(Character.isDigit(i)){
+            can = Character.getNumericValue(i);
+        }else{
+            switch (i){
+                case 'p':
+                    papa += can;
+                    break;
+                case 'm':
+                    maiz += can;
+                    break;
+                case 't':
+                    trigo+= can;
+                    break;
+                case 'c':
+                    cafe += can;
+                    break;
+                default:
+                    otros += can;
+                    break;
+            
+            }
+        }
+        
+        
+    }
+        System.out.println("Orden Final : ");
+        System.out.println("");
+        System.out.println("Maiz x"+maiz);
+        System.out.println("Papa x"+papa);
+        System.out.println("Trigo x"+trigo);
+        System.out.println("Cafe x"+cafe);
+        System.out.println("Otros x"+otros);
+        System.out.println("");
+        System.out.println("");
         
     }
         
