@@ -96,8 +96,6 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
         return dupli.contains(a);
         }
         
-    
-        
     }
     
     public static void compra(String a){
@@ -150,7 +148,6 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
     public static String obtenerSimilitud(String peticion1, String peticion2) {
         peticion1 = peticion1.toLowerCase();
         peticion2 = peticion2.toLowerCase();
-        
         String resultado = "";
         String palabra = "";
         for (int i = 0; i <= peticion2.length(); i++) {
