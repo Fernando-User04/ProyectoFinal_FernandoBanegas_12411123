@@ -32,9 +32,33 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
                     System.out.println("Ingrese la palabra magica : ");
                     String cadena = entrada.next();
                     compra(cadena);
-                    
                     break;
                 case 2:
+                    System.out.print("Ingrese primera peticion: ");
+                    entrada.nextLine();
+                    String peticion1 = entrada.nextLine();
+                    System.out.print("Ingrese segunda peticion: ");
+                    String peticion2 = entrada.nextLine();
+
+                    String similitudAlterada = obtenerSimilitud(peticion1, peticion2);
+                    int letras = 0;
+                    int asteriscos = 0;
+                    for (int i = 0; i < similitudAlterada.length(); i++) {
+                        char c = similitudAlterada.charAt(i);
+                        if (Character.isLetter(c)) {
+                            letras++;
+                        } else if (c == '*') {
+                            asteriscos++;
+                        }
+                    }
+                    double similitud = (double) letras / (letras + asteriscos);
+                    System.out.println("Similitudes de la segunda peticion: " + similitudAlterada);
+                    System.out.println("Las peticiones tienen un parecido de " +similitud);
+                    
+                    System.out.println("");
+
+
+                    
                     break;
                 case 3:
                     System.out.println("Ingrese la cadena de prueba :");
@@ -85,10 +109,8 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
         int can = 0;
     for (int cont=0;cont<a.length();cont++){
         char i = a.charAt(cont);
-        if ((i>='a' && i !='a')&&(i<='z' && i !='z')){
-        System.out.println("No es una letra");
-        }
-        else if(Character.isDigit(i)){
+        if 
+        (Character.isDigit(i)){
             can = Character.getNumericValue(i);
         }else{
             switch (i){
@@ -124,6 +146,52 @@ public class Lab1_FernandoBanegasLab4P1_DarielSevilla {
         System.out.println("");
         
     }
+    
+    public static String obtenerSimilitud(String peticion1, String peticion2) {
+        peticion1 = peticion1.toLowerCase();
+        peticion2 = peticion2.toLowerCase();
+        
+        String resultado = "";
+        String palabra = "";
+        for (int i = 0; i <= peticion2.length(); i++) {
+            if (i == peticion2.length() || peticion2.charAt(i) == ' ') {
+                if (!palabra.isEmpty()) {
+                    if (contienePalabra(peticion1, palabra)) {
+                        resultado += palabra;
+                    } else {
+                        for (int j = 0; j < palabra.length(); j++) {
+                            resultado += "*";
+                        }
+                    }
+                    resultado += " ";
+                    palabra = ""; 
+                }
+            } else {
+                palabra += peticion2.charAt(i);
+            }
+        }
+        return resultado.trim();
+    }
+    
+     public static boolean contienePalabra(String base, String palabra) {
+        String palabraBase = "";
+        for (int i = 0; i <= base.length(); i++) {
+            if (i == base.length() || base.charAt(i) == ' ') {
+                if (!palabraBase.isEmpty()) {
+                    if (palabraBase.equals(palabra)) {
+                        return true;
+                    }
+                    palabraBase = "";
+                }
+            } else {
+                palabraBase += base.charAt(i);
+            }
+        }
+
+        return false;
+    }
+
+
         
          
             
