@@ -4,6 +4,7 @@
  */
 package examen1p1_fernandobanegas.examen1p1_darielsevilla;
 import java.util.Scanner;
+import java.util.Random;
 /**
  *
  * @author Fernando
@@ -32,34 +33,65 @@ public class Examen1P1_FernandoBanegasExamen1P1_DarielSevilla {
                     break;
                 case 2 :
                     System.out.println("----Rotacion Circular de arreglo----");
-                    
-                    
+                    System.out.print("Ingrese el tamaño del arreglo (mayor a 5): ");
+                    int tamano = entrada.nextInt();
+                    while (tamano <= 5) {
+                        System.out.print("El tamaño debe ser mayor a 5. Inténtelo de nuevo: ");
+                        tamano = entrada.nextInt();
+                    }
+                    int[] arreglo = new int[tamano];
+                    llenar(arreglo);
+                    System.out.print("Arreglo generado: ");
+                    impresion(arreglo);
+                    System.out.print("Ingrese la cadena de rotación (formato i|d:numero): ");
+                    String e = entrada.next();
+                    char di = e.charAt(0);
+                    int pos = Integer.parseInt(e.substring(2));
+                    arreglo = rotar(arreglo, di, pos);
+                    System.out.print("Arreglo después de la rotación: ");
+                    impresion(arreglo);
+                  
                     break;
                 case 3 :
                     System.out.println("----Bono----");
-                    System.out.print("Ingrese el tamanio de la figura : ");
-                    int tam = entrada.nextInt();
-                    int fila1 = 0;
-                    int fila2 = tam;
-                    int li = 1;
-                    int ld =tam-1;
-                    for(int cont=0;cont<=tam;cont++){
-                        if(cont==0||cont==tam){
-                        for(int cont2=0;cont2<=tam;cont2++){
-                            System.out.print("- ");
-                            }
-                        }else{
-                            for(int cont3=1;cont3<=tam-1;cont3++){
-                                if(cont3==li||cont3==ld){
-                                    System.out.print("+ ");
-                                }
+                    System.out.print("Ingrese el tamaño de su figura (impar y mayor o igual a 7): ");
+                    int n = entrada.nextInt();
+                    if (n < 7 || n % 2 == 0) {
+                        System.out.println("Error: El número debe ser impar y mayor o igual a 7.");
+                        return;
+                    }
+                    for (int i = 0; i < n; i++) {
+                        System.out.print("- ");
+                    }
+                    System.out.println();
+                    for (int i = 0; i < n / 2 + 1; i++) {
+                        for (int j = 0; j < n; j++) {
+                            if (j == i || j == n - i - 1) {
+                                System.out.print("+ ");
+                            } else if (j > i && j < n - i - 1) {
+                                System.out.print("* ");
+                            } else {
+                                System.out.print("  ");
                             }
                         }
-                        System.out.println("");
-                        li++;
-                        ld--;
+                        System.out.println();
                     }
-                    
+                    for (int i = n / 2 - 1; i >= 0; i--) {
+                        for (int j = 0; j < n; j++) {
+                            if (j == i || j == n - i - 1) {
+                                System.out.print("+ ");
+                            } else if (j== n /2 ) {
+                                System.out.print("* ");
+                            } else {
+                                System.out.print("  ");
+                            }
+                        }
+                        System.out.println();
+                    }
+                    for (int i = 0; i < n; i++) {
+                        System.out.print("- ");
+                    }
+                    System.out.println();
                     break;
                 case 4 :
                     System.out.println("Saliendo del programa....");
@@ -76,4 +108,40 @@ public class Examen1P1_FernandoBanegasExamen1P1_DarielSevilla {
         System.out.println("Gracias por usar el programa.");
     }
     
+
+        public static void llenar(int[] arreglo) {
+            Random leer = new Random();
+            for (int i = 0; i < arreglo.length; i++) {
+                arreglo[i] = leer.nextInt(100) + 1;
+            }
+        }
+
+        public static int[] rotar(int[] arreglo, char di, int pos) {
+            int[] res = new int[arreglo.length];
+            int n = arreglo.length;
+
+            for (int i = 0; i < n; i++) {
+                int nuevoIndice;
+                if (di=='i') {
+                    nuevoIndice = (i+(n-pos))%n;
+                } else {
+                    nuevoIndice = (i+pos)%n;
+                }
+                res[nuevoIndice] = arreglo[i];
+            }
+            return res;
+        }
+
+            public static void impresion(int[] arreglo) {
+            System.out.print("[ ");
+            for (int i = 0; i < arreglo.length; i++) {
+                System.out.print(arreglo[i]);
+                if (i < arreglo.length - 1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println(" ]");
+
+        }
+
 }
