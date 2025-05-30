@@ -48,6 +48,63 @@ public class Lab6P1_FernandoBanegasLab6P1_DarielSevilla {
                     break;
                 case 2:
                     System.out.println("----Es Par???----");
+                    Scanner scanner = new Scanner(System.in);
+
+                    int vidas = 3;
+                    int tamano = 4;
+
+                    int[][] solucion = new int[tamano][tamano];
+                    char[][] oculto = new char[tamano][tamano];
+
+                    llenar(solucion, oculto);
+
+                    int paresEncontrados = 0;
+                    int totalPares = (tamano * tamano) / 2;
+
+                    while (vidas > 0 && paresEncontrados < totalPares) {
+                        System.out.println("Vidas: " + vidas);
+                        mostrar(oculto);
+
+                        System.out.print("Ingrese fila y columna de la primera casilla (numero/espacio/numero): ");
+                        int f1 = scanner.nextInt();
+                        int c1 = scanner.nextInt();
+
+                        System.out.print("Ingrese fila y columna de la segunda casilla(numero/espacio/numero): ");
+                        int f2 = scanner.nextInt();
+                        int c2 = scanner.nextInt();
+
+                        if (!validez(f1, c1, tamano) || !validez(f2, c2, tamano)) {
+                            System.out.println("Coordenadas inválidas.");
+                            continue;
+                        }
+
+                        if ((f1 == f2 && c1 == c2) || oculto[f1][c1] != 'X' || oculto[f2][c2] != 'X') {
+                            System.out.println("Casillas inválidas o ya descubiertas.");
+                            continue;
+                        }
+
+                        int val1 = solucion[f1][c1];
+                        int val2 = solucion[f2][c2];
+
+                        System.out.println("Primera casilla: " + con(val1));
+                        System.out.println("Segunda casilla: " + con(val2));
+
+                        if (val1 == val2) {
+                            oculto[f1][c1] = con(val1);
+                            oculto[f2][c2] = con(val2);
+                            paresEncontrados++;
+                            System.out.println("¡Par encontrado!");
+                        } else {
+                            System.out.println("No son iguales.");
+                            vidas--;
+                        }
+                    }
+
+                    if (paresEncontrados == totalPares) {
+                        System.out.println("¡Ganaste! Encontraste todos los pares.");
+                    } else {
+                        System.out.println("Perdiste. Se acabaron las vidas.");
+                    }
                     
                     break;
                 case 3:
@@ -110,6 +167,52 @@ public class Lab6P1_FernandoBanegasLab6P1_DarielSevilla {
                 xd[n - 1 - j][i] = matriz[i][j];
         return xd;
     }
-    
-    
+        public static void llenar(int[][] solucion, char[][] oculto) {
+        int[] pares = new int[16];
+        int valor = 0;
+        for (int i = 0; i < 16; i += 2) {
+            pares[i] = valor;
+            pares[i + 1] = valor;
+            valor++;
+        }
+
+        for (int i = 0; i < 16; i++) {
+            int j = (int)(Math.random() * 16);
+            int temp = pares[i];
+            pares[i] = pares[j];
+            pares[j] = temp;
+        }
+
+        int index = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                solucion[i][j] = pares[index];
+                oculto[i][j] = 'X';
+                index++;
+            }
+        }
+    }
+
+        public static boolean validez(int fila, int col, int tamano) {
+            return fila >= 0 && fila < tamano && col >= 0 && col < tamano;
+        }
+
+        public static void mostrar(char[][] matriz) {
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[i].length; j++) {
+                    System.out.print("["+matriz[i][j]+"]");
+                }
+                System.out.println();
+            }
+        }
+
+        public static char con(int numero) {
+            if (numero >= 0 && numero <= 9) {
+                return (char) ('0' + numero);
+            } else {
+                return (char) ('A' + (numero - 10));
+            }
+        }
+
+
 }
