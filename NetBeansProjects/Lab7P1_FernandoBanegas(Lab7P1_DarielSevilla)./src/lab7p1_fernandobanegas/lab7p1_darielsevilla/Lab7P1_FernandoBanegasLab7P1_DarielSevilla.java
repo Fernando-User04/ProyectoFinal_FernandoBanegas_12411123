@@ -20,9 +20,12 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
         cancion[]playlist = new cancion[10];
         Random r = new Random();
         int resp = 0;
+        int posp = 0;
+        int posplay=0;
         do {
             System.out.println("----Spotify----");
-            int posp=0;
+            
+            
             System.out.println("1) Publicar Cancion\n2) Buscar Cancion\n3) Listar canciones en la plataforma\n"
                     + "4) Agregar Canciones a la playlist\n5) Ordenar Playlist\n6) Shuffle de Playlist\n7) Salir");
             System.out.print("Opcion : ");
@@ -54,8 +57,6 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
                         }else{
                             tam=3;
                         }
-                        
-                        
                     } while (tam!=3);
                     System.out.println("Se agrego la nueva cancion a la plataforma : ");
                     System.out.println("Cancion : "+codigo+" - "+nombre);   
@@ -73,12 +74,12 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
                     String nombree = cadena.substring(7,cadena.length());
                     opcion.toLowerCase();
                     if(opcion=="nombre"){
-                        for (int i = 0; i < posp; i++) {
+                        for (int i = 0; i < 30; i++) {
                            if(nombree.equals(can[i].getNombre()));
                             System.out.println(can[i]);
                         }
                     }else{
-                        for (int i = 0; i < posp; i++) {
+                        for (int i = 0; i < 30; i++) {
                            if(nombree.equals(can[i].getAutor()));
                             System.out.println(can[i]);
                         }
@@ -90,18 +91,56 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
                     System.out.println("Canciones en plataforma : ");
                     System.out.println("");
                     for (int i = 0; i < 30; i++) {
+                        if(can[i]==null){
+                            break;
+                        }
                         System.out.println(can[i]);
-                        System.out.println("");
                         System.out.println("");
                     }
                     break;
                 case 4:
                     System.out.println("----Agregar Canciones a la Playlist----");
-                    
-                    
+                    System.out.println("");
+                    System.out.println("Ingrese comando para agregar a favoritos : ");
+                    entrada.nextLine();
+                    String comando = entrada.nextLine();
+                    int l = comando.indexOf('-');
+                    String nuevoc = comando.substring(0,l-1);
+                    System.out.println(nuevoc);
+                    String[] array = nuevoc.split(",");
+                    for (int i = 0; i < array.length; i++) {
+                        for (int j = 0; j < 30; j++) {
+                            if(can[j]==null){
+                                break;
+                            }
+                            if(array[i].equals(can[j].getCodigo())){
+                                playlist[posplay]=can[j];
+                                System.out.println("La cancion "+can[j].getNombre()+" ha sido adicionada con exito!!");
+                                posplay++;
+                            }
+                            
+                        }
+                        
+                    }
                     break;
                 case 5:
                     System.out.println("----Ordenar Playlist----");
+                    System.out.println("");
+                    System.out.println("Elija la forma de ordenamiento :");
+                    System.out.println("1) Ascendente (duracion)\n2) Descendiente (duracion)\n3) Descendente (veces escuchada)");
+                    System.out.print("Opcion : ");
+                    int resp5 = entrada.nextInt();
+                    switch (resp5){
+                        case 1: 
+                            System.out.println("----Ascendente (duracion)----");
+                            
+                            break;
+                        case 2:
+                            System.out.println("----Descendente (duracion)----");
+                            break;
+                        case 3:
+                            System.out.println("----Descendente (veces escuchada)");
+                    }
                     break;
                 case 6:
                     System.out.println("----Shuffle de Playlist----");
@@ -116,4 +155,14 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
         System.out.println("Gracias por usar Spotify :) ");
     }
     
+    public void ascendente(cancion[] can){
+        
+        for (int i = 0; i < can.length; i++) {
+            int numerom = can[i].getDuracion();
+            
+           //no se logro :( 
+            
+        }
+        
+    }
 }
