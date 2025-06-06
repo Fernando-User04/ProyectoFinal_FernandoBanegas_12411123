@@ -67,27 +67,38 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
                 case 2:
                     System.out.println("----Buscar Cancion----");
                     System.out.println("Ingrese cadena de busqueda : ");
+                    entrada.nextLine();
                     String cadena = entrada.nextLine();
                     String opcion = cadena.substring(0,5);
                     String nombree = cadena.substring(7,cadena.length());
                     opcion.toLowerCase();
                     if(opcion=="nombre"){
-                        for (int i = 0; i < 30; i++) {
-                            
-                            
+                        for (int i = 0; i < posp; i++) {
+                           if(nombree.equals(can[i].getNombre()));
+                            System.out.println(can[i]);
                         }
-                        
-                        
                     }else{
-                        
+                        for (int i = 0; i < posp; i++) {
+                           if(nombree.equals(can[i].getAutor()));
+                            System.out.println(can[i]);
+                        }
                     }
-                    
                     break;
                 case 3:
                     System.out.println("----Listar canciones en la plataforma----");
+                    System.out.println("");
+                    System.out.println("Canciones en plataforma : ");
+                    System.out.println("");
+                    for (int i = 0; i < 30; i++) {
+                        System.out.println(can[i]);
+                        System.out.println("");
+                        System.out.println("");
+                    }
                     break;
                 case 4:
                     System.out.println("----Agregar Canciones a la Playlist----");
+                    
+                    
                     break;
                 case 5:
                     System.out.println("----Ordenar Playlist----");
@@ -103,10 +114,6 @@ public class Lab7P1_FernandoBanegasLab7P1_DarielSevilla {
             }
         } while (resp!=7);
         System.out.println("Gracias por usar Spotify :) ");
-    }
-    
-    public void busqueda(String a){
-        
     }
     
 }
