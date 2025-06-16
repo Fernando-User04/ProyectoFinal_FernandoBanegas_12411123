@@ -297,7 +297,7 @@ public class ProyectoFinal_FernandoBanegas {
                     break;
                 case 7:
                     System.out.println("----Simulador----");
-                    if (enem.size()>0&&babo.size()>5) {
+                    if (enem.size()>0&&mochila.size()==5) {
                         System.out.println("");
                         System.out.println("Lista de enemigos : ");
                         System.out.println("");
