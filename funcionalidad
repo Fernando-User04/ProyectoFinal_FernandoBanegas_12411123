@@ -1,0 +1,11 @@
+el contenido del avance del codigo incluye lo siguente hasta el momento :
+variables int, String, boolean
+ciclos while, for
+menus con if, y switch
+incluye el uso de ArrayList, Scanner, y Random
+Tiene dos clases, siendo estas la clase babosa y la clase enemigo.
+
+el codigo al momento que el usuario ingrese un numero al momento de estar en un menu hay validaciones incluidas de que lo proximo que ingrese el usuario sea un numero
+y que sea uno de los numeros dentro del rango de opciones del menu, esto en todos los menus que hay en el codigo.
+
+estan las dos clases con sus respectivos atributos, getters, setters y metodo Tostring.
