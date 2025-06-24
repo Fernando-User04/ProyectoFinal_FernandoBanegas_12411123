@@ -12,17 +12,14 @@ public class babosa {
     private String name;
     private String elemento;
     private int dano;
-    private int vida;
+    private boolean estado;
     
     
-    public void babosa(){
-    }
-    
-    public void babosa(String name, String elemento, int dano, int vida){
+    public void babosa(String name, String elemento, int dano, boolean estado){
         this.name = name;
         this.elemento = elemento;
         this.dano = dano;
-        this.vida = vida;
+        this.estado = estado;
     }
 
     public String getName() {
@@ -49,17 +46,20 @@ public class babosa {
         this.dano = dano;
     }
 
-    public int getVida() {
-        return vida;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
+
+    
+    
 
     @Override
     public String toString() {
-        return "Nombre = "+name+"\nElemento = "+elemento+"\nDano = "+dano+"\nVida = "+vida;
+        return "Nombre = "+name+"\nElemento = "+elemento+"\nDano = "+dano+"\nEstado = "+estado;
     }
     
     
